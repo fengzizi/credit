@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>管理员详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css?v=2.1.0" media="all"/>
+    <style type="text/css">
+        body {
+            padding: 15px;
+        }
+
+        .layui-form-pane .layui-form-label {
+            width: 186px;
+        }
+
+        .layui-form-pane .layui-input-block {
+            margin-left: 186px;
+        }
+
+        textarea {
+            max-height: 500px;
+        }
+
+        .layui-form-item .layui-input-inline {
+            width: 260px;
+        }
+
+        input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+
+        input[type=text]:focus, input[type=password]:focus, textarea:focus {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+
+        .layui-form-label {
+            width: 115px;
+        }
+
+        .layui-input-block {
+            margin-left: 145px;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<form class="layui-form" lay-filter="formTest" enctype="multipart/form-data" action="">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">信贷名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="appName" id="appName" lay-verify="appName" placeholder="请输入信贷名称"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">信贷id编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="appId" id="appId" lay-verify="required" placeholder="请输入信贷id编号"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">标签</label>
+            <div class="layui-input-inline">
+                <select name="tag" id="tag">
+                    <option value="新">新</option>
+                    <option value="热">热</option>
+                    <option value="荐">荐</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <select name="state" id="state">
+                    <option value="1">开启</option>
+                    <option value="0">下架</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">副标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="subTitle" id="subTitle" style="width: 689px;" lay-verify="required"
+                   autocomplete="off" placeholder="请输入副标题" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">底部简短描述信息</label>
+        <div class="layui-input-block">
+            <input type="text" name="shortDesc" id="shortDesc" style="width: 689px;" autocomplete="off"
+                   placeholder="请输入底部简短描述信息" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商户H5地址</label>
+        <div class="layui-input-block">
+            <input type="text" name="appTenantUrl" id="appTenantUrl" lay-verify="url" style="width: 689px;"
+                   autocomplete="off" placeholder="商户H5地址" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">额度范围</label>
+            <div class="layui-input-inline" style="width: 117px;">
+                <input type="number" name="creditMinLimit" placeholder="￥" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 117px;">
+                <input type="number" name="creditMaxLimit" placeholder="￥" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">借款周期</label>
+            <div class="layui-input-inline" style="width: 117px;">
+                <input type="number" name="creditMinTerm" placeholder="￥" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 117px;">
+                <input type="number" name="creditMaxTerm" placeholder="￥" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">最快放款时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="sucessPayTime" id="sucessPayTime" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">成功率（%）</label>
+            <div class="layui-input-inline">
+                <input type="number" name="sucessRate" id="sucessRate" autocomplete="off"
+                       lay-verify="required|number|sucessRate" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">信贷类目</label>
+            <div class="layui-input-inline" style="width: 260px;">
+                <select name="categoryId" id="categoryId" lay-verify="required" lay-search>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">日利息（%）</label>
+            <div class="layui-input-inline">
+                <input type="number" name="dayInterest" id="dayInterest" lay-verify="required|number|dayInterest"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item update" style="display:none;">
+        <div class="layui-inline">
+            <label class="layui-form-label">创建时间</label>
+            <div class="layui-input-inline" style="width: 260px;">
+                <input type="text" name="created" id="created" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">更新时间</label>
+            <div class="layui-input-inline" style="width: 260px;">
+                <input type="text" name="updated" id="updated" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">app图标</label>
+        <div class="layui-input-block">
+            <div class="layui-upload-drag" style="padding: 25px;width: 206px;margin-right: 5px;" id="test10">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+            </div>
+            <blockquote class="layui-elem-quote layui-quote-nm"
+                        style="padding: 9px;display:none;vertical-align: top;margin-bottom: 0px;">
+                <div class="layui-upload-list" id="demo2" style="margin: 0px;">
+
+                </div>
+            </blockquote>
+        </div>
+    </div>
+    <fieldset class="layui-elem-field site-demo-button" style="width: 48%;margin-right:1%;display: inline-block">
+        <legend>信贷附属</legend>
+        <div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">申请条件</label>
+                    <div class="layui-input-inline">
+                        <textarea placeholder="请输入申请条件"  type="text" lay-verify="required" name="applyCondition"
+                                  id="applyCondition" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">所需材料</label>
+                    <div class="layui-input-inline">
+                        <textarea placeholder="请输入所需材料" type="text" lay-verify="required" name="requestMaterial"
+                                  id="requestMaterial" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">平台描述</label>
+                    <div class="layui-input-inline">
+                        <textarea placeholder="请输入平台描述" type="text" lay-verify="required" name="platformDesc" id="platformDesc"
+                                  class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field site-demo-button" style="width: 48%;margin-left:1%;display: inline-block;vertical-align: top;">
+        <legend>信贷评论统计</legend>
+        <div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">平均放款速度</label>
+                    <div class="layui-input-inline">
+                        <div id="avgPayRate" style="margin-top: 17px" class="demo-slider"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">平均难易程度</label>
+                    <div class="layui-input-inline">
+                        <div id="avgDifficulty" style="margin-top: 17px" class="demo-slider"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">平均催收</label>
+                    <div class="layui-input-inline">
+                        <div id="avgCollection" style="margin-top: 17px" class="demo-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="layui-form-item" id="submit_div" style="display:none;">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" id="testListAction2" lay-filter="submit">立即提交</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../layui/layui.js?v=2.1.0"></script>
+<script type="text/javascript" src="creditShopItemDetails.js?v=1.8.0"></script>
+</body>
+</html>

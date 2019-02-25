@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TmessageMapper">
+
+    <resultMap type="com.credit.diversion.model.Tmessage" id="mTmessage" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.Tmessage" id="mTmessageAll">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime"/>
+        <result column="type" property="type"/>
+        <result column="status" property="status"/>
+        <result column="start_time" property="startTime"/>
+        <result column="finish_time" property="finishTime"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        user_id AS userId,
+        title AS title,
+        content AS content,
+        create_time AS createTime,
+        type AS type,
+        status AS status,
+        start_time AS startTime,
+        finish_time AS finishTime
+    </sql>
+    <sql id="mColumnsSqlAll">
+        m.id AS id,
+        m.user_id AS userId,
+        m.title AS title,
+        m.content AS content,
+        m.create_time AS createTime,
+        m.type AS type,
+        m.status AS status,
+        m.start_time AS startTime,
+        m.finish_time AS finishTime
+    </sql>
+    <select id="selectListOfLoginName" resultType="com.credit.diversion.model.Tmessage">
+        select <include refid="mColumnsSqlAll"/>,l.login_name as userLoginName
+        from t_message m
+        left join t_user_login_info l on l.id=m.user_id
+        <where>
+            <if test="m.userId!=null">
+                and m.user_id=#{m.userId}
+            </if>
+            <if test="m.title!=null and m.title!=''">
+                and m.title like concat('%',#{m.title},'%')
+            </if>
+            <if test="m.type!=null">
+                and m.type=#{m.type}
+            </if>
+            <if test="m.status!=null">
+                and m.status=#{m.status}
+            </if>
+            <if test="m.userId!=null">
+                and m.userId=#{m.userId}
+            </if>
+            <if test="m.userLoginName!=null">
+                and l.login_name=#{m.userLoginName}
+            </if>
+        </where>
+        order by m.id desc
+    </select>
+</mapper>

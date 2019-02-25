@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>管理员详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css?v=2.1.0" media="all"/>
+    <style type="text/css">
+        body{
+            padding: 15px;
+        }
+        .layui-form-pane .layui-form-label{
+            width: 186px;
+        }
+        .layui-form-pane .layui-input-block{
+            margin-left: 186px;
+        }
+        textarea{
+            max-height: 500px;
+        }
+
+        .layui-form-item .layui-input-inline{
+            width: 260px;
+        }
+        input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+        input[type=text]:focus, input[type=password]:focus, textarea:focus {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+
+        .layui-form-label{
+            width: 100px;
+        }
+
+        .layui-input-block{
+            margin-left: 130px;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<form class="layui-form" lay-filter="formTest" enctype="multipart/form-data" action="">
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="resourceName" id="resourceName" lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">菜单图标</label>
+            <div class="layui-input-inline">
+                <input type="text" name="resourceIcon" id="resourceIcon" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">排列顺序</label>
+            <div class="layui-input-inline">
+                <input type="number" name="resourceOrder" value="0" id="resourceOrder" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">父级</label>
+            <div class="layui-input-inline">
+                <select name="pid" id="pid" lay-search>
+                    <option value="0">无</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <select name="resourceStatus" id="resourceStatus">
+                    <option value="0">正常</option>
+                    <option value="1">停用</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">分组信息</label>
+            <div class="layui-input-inline">
+                <select name="resourceGroup" id="resourceGroup">
+                    <option value="0">普通用户</option>
+                    <option value="1">管理员</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">链接地址</label>
+        <div class="layui-input-block">
+            <input type="text" name="resourceUrl" id="resourceUrl" style="width: 674px;" autocomplete="off" placeholder="请输入链接地址" class="layui-input">
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item update" style="display: none">
+        <div class="layui-inline">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-inline">
+                <select name="resourceType" id="resourceType">
+                    <option value="0">模块</option>
+                    <option value="1">菜单</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item" id="submit_div" style="display:none;">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" id="testListAction2" lay-filter="submit">立即提交</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../layui/layui.js?v=2.1.0"></script>
+<script type="text/javascript" src="manageResourceDetails.js?v=1.2.0"></script>
+</body>
+</html>

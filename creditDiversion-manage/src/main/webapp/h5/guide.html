@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <style>
+        .animate {
+            position: fixed;
+            bottom: 1.25rem;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .button {
+            padding: 0.5rem 1.25rem;
+            font-size: 1.20rem;
+            font-weight: bold;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border-radius: 1.4375rem;
+            margin-bottom: 0.9375rem;
+        }
+
+        #xiang {
+            background: rgba(255, 255, 255, 0.9);
+            color: #555555;
+            margin-left: 1.875rem;
+        }
+    </style>
+</head>
+
+<body>
+<div class="mui-content">
+    <div class="mui-content" id="content" style="background: #F0F0F0;">
+        <div id="slider" class="mui-fullscreen">
+            <div id="refreshContainer" class="mui-slider-group">
+                <div id="scroll1" class="mui-scroll-wrapper">
+                    <div class="mui-scroll">
+                        <img id="index_img" src="" width="100%" style="vertical-align: top;display: none;"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="animate" style="">
+    <button id='now' class="mui-btn button">立即参与</button>
+    <button id='xiang' class="mui-btn button">活动规则</button>
+</div>
+<script src="js/mui.min.js"></script>
+<script>
+    //阻尼系数
+    var deceleration = mui.os.ios ? 0.0007 : 0.0007;
+    mui('.mui-scroll-wrapper').scroll({
+        bounce: false,
+        indicators: false, //是否显示滚动条
+        deceleration: deceleration
+    });
+    window.onload=function(){
+        mui.ajax('/h5/systemConfig/selectLastOne', {
+            type: 'get',
+            success: function(result) {
+                if(result.code==1&&result.data!=null){
+                    document.getElementById("index_img").setAttribute("src",result.data.indexImg);
+                }
+            },
+            error: function(xhr, type, errorThrown) {
+                if("timeout" == type) {
+                    mui.toast("请求超时！");
+                } else {
+                    mui.toast("请求异常！");
+                }
+            }
+        });
+    }
+    document.getElementById("index_img").onload=function(){
+        this.style.display="inline-block";
+    }
+    mui.back = function () {
+    };
+    document.getElementById("now").addEventListener('tap', function (e) {
+        var url="more_goods_index.html";
+        if(window.top.location.pathname.indexOf("guide.html")>=0||window.top.location.pathname.indexOf("guide_index.html")>=0){
+            url="moreGoods.html";
+        }
+        mui.openWindow({
+            url: url,
+            id: 'more_goods_index',
+            styles: {
+                top: "0px", //新页面顶部位置
+                bottom: "0px", //新页面底部位置
+                popGesture: "close"
+            },
+            extras: {
+                brandId: ""
+            },
+            show: {
+                autoShow: false //页面loaded事件发生后自动显示，默认为true
+            },
+            waiting: {
+                autoShow: false //自动显示等待框，默认为true
+            }
+
+        })
+    });
+    document.getElementById("xiang").addEventListener('tap', function (e) {
+        mui.openWindow({
+            url: 'indexs.html',
+            id: 'indexs',
+            styles: {
+                top: "0px", //新页面顶部位置
+                bottom: "0px", //新页面底部位置
+                popGesture: "close"
+            },
+            extras: {
+                brandId: ""
+            },
+            show: {
+                autoShow: false //页面loaded事件发生后自动显示，默认为true
+            },
+            waiting: {
+                autoShow: false //自动显示等待框，默认为true
+            }
+
+        })
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TmanageLogMapper">
+
+    <resultMap type="com.credit.diversion.model.TmanageLog" id="mTmanageLog" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TmanageLog" id="mTmanageLogAll">
+        <id column="id" property="id"/>
+        <result column="log_account_id" property="logAccountId"/>
+        <result column="log_user_name" property="logUserName"/>
+        <result column="log_resource" property="logResource"/>
+        <result column="log_resource_id" property="logResourceId"/>
+        <result column="log_operate" property="logOperate"/>
+        <result column="log_ip_address" property="logIpAddress"/>
+        <result column="log_content" property="logContent"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        log_account_id AS logAccountId,
+        log_user_name AS logUserName,
+        log_resource AS logResource,
+        log_resource_id AS logResourceId,
+        log_operate AS logOperate,
+        log_ip_address AS logIpAddress,
+        log_content AS logContent
+    </sql>
+</mapper>

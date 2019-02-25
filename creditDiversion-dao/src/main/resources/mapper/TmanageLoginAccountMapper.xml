@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TmanageLoginAccountMapper">
+
+    <resultMap type="com.credit.diversion.model.TmanageLoginAccount" id="mTmanageLoginAccount" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TmanageLoginAccount" id="mTmanageLoginAccountAll">
+        <id column="id" property="id"/>
+        <result column="login_name" property="loginName"/>
+        <result column="login_password" property="loginPassword"/>
+        <result column="user_role_id" property="userRoleId"/>
+        <result column="user_phone" property="userPhone"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_qq" property="userQq"/>
+        <result column="user_work_number" property="userWorkNumber"/>
+        <result column="company_id" property="companyId"/>
+        <result column="department_id" property="departmentId"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="account_status" property="accountStatus"/>
+        <result column="account_type" property="accountType"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        login_name AS loginName,
+        login_password AS loginPassword,
+        user_role_id AS userRoleId,
+        user_phone AS userPhone,
+        user_name AS userName,
+        user_qq AS userQq,
+        user_work_number AS userWorkNumber,
+        company_id AS companyId,
+        department_id AS departmentId,
+        last_login_time AS lastLoginTime,
+        last_login_ip AS lastLoginIp,
+        account_status AS accountStatus,
+        account_type AS accountType
+    </sql>
+</mapper>

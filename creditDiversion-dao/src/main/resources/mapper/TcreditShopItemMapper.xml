@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TcreditShopItemMapper">
+
+    <resultMap type="com.credit.diversion.model.TcreditShopItem" id="mTcreditShopItem" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TcreditShopItem" id="mTcreditShopItemAll">
+        <id column="id" property="id"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="app_name" property="appName"/>
+        <result column="app_icon_url" property="appIconUrl"/>
+        <result column="sub_title" property="subTitle"/>
+        <result column="app_id" property="appId"/>
+        <result column="state" property="state"/>
+        <result column="tag" property="tag"/>
+        <result column="credit_min_limit" property="creditMinLimit"/>
+        <result column="credit_max_limit" property="creditMaxLimit"/>
+        <result column="credit_max_term" property="creditMaxTerm"/>
+        <result column="credit_min_term" property="creditMinTerm"/>
+        <result column="sucess_pay_time" property="sucessPayTime"/>
+        <result column="sucess_rate" property="sucessRate"/>
+        <result column="day_interest" property="dayInterest"/>
+        <result column="short_desc" property="shortDesc"/>
+        <result column="app_tenant_url" property="appTenantUrl"/>
+        <result column="created" property="created"/>
+        <result column="updated" property="updated"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        category_id AS categoryId,
+        app_name AS appName,
+        app_icon_url AS appIconUrl,
+        sub_title AS subTitle,
+        app_id AS appId,
+        state AS state,
+        tag AS tag,
+        credit_min_limit AS creditMinLimit,
+        credit_max_limit AS creditMaxLimit,
+        credit_max_term AS creditMaxTerm,
+        credit_min_term AS creditMinTerm,
+        sucess_pay_time AS sucessPayTime,
+        sucess_rate AS sucessRate,
+        day_interest AS dayInterest,
+        short_desc AS shortDesc,
+        app_tenant_url AS appTenantUrl,
+        created AS created,
+        updated AS updated
+    </sql>
+    <sql id="mColumnsSqlAll">
+        c.id AS id,
+        c.category_id AS categoryId,
+        c.app_name AS appName,
+        c.app_icon_url AS appIconUrl,
+        c.sub_title AS subTitle,
+        c.app_id AS appId,
+        c.state AS state,
+        c.tag AS tag,
+        c.credit_min_limit AS creditMinLimit,
+        c.credit_max_limit AS creditMaxLimit,
+        c.credit_max_term AS creditMaxTerm,
+        c.credit_min_term AS creditMinTerm,
+        c.sucess_pay_time AS sucessPayTime,
+        c.sucess_rate AS sucessRate,
+        c.day_interest AS dayInterest,
+        c.short_desc AS shortDesc,
+        c.app_tenant_url AS appTenantUrl,
+        c.created AS created,
+        c.updated AS updated
+    </sql>
+    <select id="selectListAll" resultType="com.credit.diversion.model.TcreditShopItem">
+      select <include refid="mColumnsSqlAll"/>,
+        count(distinct r.user_id) as creditCount,
+        sum(if(r.is_register = 1,1,0)) as creditCountRe
+        from t_credit_shop_item c
+        left JOIN t_credit_access_record r on c.id=r.credit_id
+        <where>
+            <if test="c.state!=null">
+              and c.state=#{c.state}
+            </if>
+            <if test="c.categoryId!=null">
+                and c.category_id=#{c.categoryId}
+            </if>
+            <if test="c.tag!=null and c.tag!=''">
+                and c.tag=#{c.tag}
+            </if>
+            <if test="c.appName!=null and c.appName!=''">
+                and c.app_name like concat('%',#{c.appName},'%')
+            </if>
+            <if test="categoryIds!=null">
+                and category_id in
+                <foreach item="item" collection="categoryIds" separator="," open="(" close=")" index="">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by c.id
+        order by id desc
+    </select>
+</mapper>

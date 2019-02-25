@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TitemCommentMapper">
+
+    <resultMap type="com.credit.diversion.model.TitemComment" id="mTitemComment" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TitemComment" id="mTitemCommentAll">
+        <id column="item_id" property="itemId"/>
+        <result column="avg_pay_rate" property="avgPayRate"/>
+        <result column="avg_difficulty" property="avgDifficulty"/>
+        <result column="avg_collection" property="avgCollection"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        item_id AS itemId,
+        avg_pay_rate AS avgPayRate,
+        avg_difficulty AS avgDifficulty,
+        avg_collection AS avgCollection
+    </sql>
+</mapper>

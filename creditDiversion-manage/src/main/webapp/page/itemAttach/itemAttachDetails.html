@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>管理员详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css?v=2.1.0" media="all"/>
+    <style type="text/css">
+        body{
+            padding: 15px;
+        }
+        .layui-form-pane .layui-form-label{
+            width: 186px;
+        }
+        .layui-form-pane .layui-input-block{
+            margin-left: 186px;
+        }
+        textarea{
+            max-height: 500px;
+        }
+
+        .layui-form-item .layui-input-inline{
+            width: 260px;
+        }
+        input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+        input[type=text]:focus, input[type=password]:focus, textarea:focus {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+
+        .layui-form-label{
+            width: 100px;
+        }
+
+        .layui-input-block{
+            margin-left: 130px;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<form class="layui-form" lay-filter="formTest" enctype="multipart/form-data" action="">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">申请条件</label>
+            <div class="layui-input-inline">
+                <textarea placeholder="请输入申请条件" style="width: 674px;" lay-verify="required" name="applyCondition" id="applyCondition" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">所需材料</label>
+            <div class="layui-input-inline">
+                <textarea placeholder="请输入所需材料" style="width: 674px;" lay-verify="required" name="requestMaterial" id="requestMaterial" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">平台描述</label>
+            <div class="layui-input-inline">
+                <textarea placeholder="请输入平台描述" style="width: 674px;" lay-verify="required" name="platformDesc" id="platformDesc" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item" id="submit_div" style="display:none;">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" id="testListAction2" lay-filter="submit">立即提交</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../layui/layui.js?v=2.1.0"></script>
+<script type="text/javascript" src="itemAttachDetails.js"></script>
+</body>
+</html>

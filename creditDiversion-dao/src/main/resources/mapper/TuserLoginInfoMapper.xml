@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TuserLoginInfoMapper">
+
+    <resultMap type="com.credit.diversion.model.TuserLoginInfo" id="mTuserLoginInfo" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TuserLoginInfo" id="mTuserLoginInfoAll">
+        <id column="id" property="id"/>
+        <result column="login_name" property="loginName"/>
+        <result column="login_pass" property="loginPass"/>
+        <result column="login_salt" property="loginSalt"/>
+        <result column="login_status" property="loginStatus"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="login_type" property="loginType"/>
+        <result column="loginid_beformodify" property="loginidBeformodify"/>
+        <result column="created" property="created"/>
+        <result column="updated" property="updated"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        login_name AS loginName,
+        login_pass AS loginPass,
+        login_salt AS loginSalt,
+        login_status AS loginStatus,
+        last_login_time AS lastLoginTime,
+        login_type AS loginType,
+        loginid_beformodify AS loginidBeformodify,
+        created AS created,
+        updated AS updated
+    </sql>
+</mapper>

@@ -1,0 +1,528 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>商品详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link href="css/mui.picker.css" rel="stylesheet"/>
+    <link href="css/mui.poppicker.css" rel="stylesheet"/>
+    <style>
+        html,
+        body {
+            background-color: #F0F0F0;
+        }
+
+        .mui-bar .mui-pull-left .mui-icon {
+            padding-right: 5px;
+            font-size: 28px;
+        }
+
+        .mui-bar .mui-btn {
+            font-weight: normal;
+            font-size: 17px;
+        }
+
+        .mui-bar .mui-btn-link {
+            top: 1px;
+        }
+
+        .mui-content img {
+            width: 100%;
+        }
+
+        .hm-description {
+            margin: 15px;
+        }
+
+        .hm-description > li {
+            font-size: 14px;
+            color: #8f8f94;
+        }
+
+        .title_p {
+            text-align: center;
+            color: #484848;
+            margin-bottom: 5px;
+            font-size: 15px;
+            line-height: 45px;
+        }
+
+        #nature.mui-table-view:after {
+            background: none;
+        }
+
+        .mui-table-view-cell:after {
+            left: 12px;
+        }
+
+        .loading_div {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding-top: 60%;
+            background: #F2F2F2;
+            z-index: 100;
+        }
+
+        .loading_div div {
+            margin-top: 15px;
+            color: #ce3d3a;
+        }
+
+        .loadding:after {
+            display: none;
+        }
+
+        .loadding {
+            font-size: 40px;
+            width: 40px;
+            height: 40px;
+            color: #ce3d3a;
+            margin-right: 10px;
+        }
+
+        .mui-input-row label {
+            width: 31%;
+        }
+
+        .mui-input-row label ~ input,
+        .mui-input-row label ~ select,
+        .mui-input-row label ~ textarea {
+            width: 69%;
+        }
+
+        .mui-backdrop {
+            z-index: 1000;
+        }
+
+        .mui-poppicker.mui-active {
+            z-index: 1001;
+        }
+
+        #city {
+            line-height: 40px;
+            color: #757575;
+        }
+
+        ::-webkit-input-placeholder {
+            /* WebKit browsers */
+            color: #757575;
+        }
+
+        :-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #757575;
+        }
+
+        ::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #757575;
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            color: #757575;
+        }
+    </style>
+</head>
+
+<body id="body">
+<header id="header" class="mui-bar mui-bar-transparent">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">商品详情</h1>
+    <a id="order"><span class="mui-icon mui-icon-contact mui-pull-right"></span></a>
+</header>
+<div class="loading_div">
+    <span class="mui-icon mui-icon-spinner mui-spin mui-spinner loadding"></span>
+    <div>加载中...</div>
+</div>
+<div class="mui-content" id="content" style="background: #F0F0F0;">
+    <div class="mui-fullscreen">
+        <div id="refreshContainer" class="mui-slider-group">
+            <div id="scroll1" class="mui-scroll-wrapper">
+                <div class="mui-scroll" style="padding-bottom: 53px;">
+                    <!--轮播图片-->
+                    <div id="slider" class="mui-slider">
+                        <div id="img_div" class="mui-slider-group">
+                            <!--&lt;!&ndash; 第一张 &ndash;&gt;
+                            <div class="mui-slider-item">
+                                <a href="#">
+                                    <img src="images/3.jpg">
+                                </a>
+                            </div>
+                            &lt;!&ndash; 第二张 &ndash;&gt;
+                            <div class="mui-slider-item">
+                                <a href="#">
+                                    <img src="images/shuijiao.jpg">
+                                </a>
+                            </div>
+                            &lt;!&ndash; 第三张 &ndash;&gt;
+                            <div class="mui-slider-item">
+                                <a href="#">
+                                    <img src="images/yuantiao.jpg">
+                                </a>
+                            </div>-->
+                        </div>
+                        <div id="dian_div" class="mui-slider-indicator">
+                            <!--<div class="mui-indicator mui-active"></div>
+                            <div class="mui-indicator"></div>
+                            <div class="mui-indicator"></div>-->
+                        </div>
+                    </div>
+
+                    <div style="padding: 0;background: white;padding: 10px 14px 5px 14px;">
+                        <p style="margin:0px;color: red;">
+                            ￥<span style="font-size: 25px;vertical-align: bottom;">0</span>
+                            <span class="mui-badge mui-badge-danger"
+                                  style="font-size: 10px;background: rgba(255,0,0,0.1);color: rgba(255,0,0,0.6);padding:2px 3px;">限时兑换</span>
+                        </p>
+                        <p style="margin:1px 0px;font-size: 12px;">
+                            价格<span style="text-decoration: line-through;">￥<span id="price">0000</span></span>
+                        </p>
+                        <p style="margin:5px 0px;color: #000000;margin-top: 0px;font-size: 15px;" id="name"
+                           class="mui-ellipsis-2">
+
+                        </p>
+                        <p style="margin:0;font-size: 12px;margin-bottom: 2px;">
+                            已兑换<span id="exchange">00</span>件
+                        </p>
+
+                    </div>
+                    <div class="mui-table-view-cell"
+                         style="background-color: white;padding:0px;cursor: pointer;width: 100%;margin-top:10px;">
+                        <p class="title_p">产品属性</p>
+                        <ul class="mui-table-view" style="background: none;" id="nature">
+                            <li class="mui-table-view-cell">
+                                <div class="" style="float:left;color: #4C4C4C;font-size: 14px;width: 35%;">
+                                    所属类目
+                                </div>
+                                <span id="category" style="float: left;color: #959595;font-size: 14px;"></span>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <div class="" style="float:left;color: #4C4C4C;font-size: 14px;width: 35%;">
+                                    品牌
+                                </div>
+                                <span id="brand" style="float: left;color: #959595;font-size: 14px;"></span>
+                            </li>
+                            <li class="mui-table-view-cell">
+                                <div class="" style="float:left;color: #4C4C4C;font-size: 14px;width: 35%;">
+                                    产地
+                                </div>
+                                <span id="address" style="float: left;color: #959595;font-size: 14px;"></span>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <nav class="mui-bar mui-bar-tab" style="position: fixed;bottom:0px;height: 45px;">
+        <a href="#modal" class="mui-tab-item mui-btn-danger"
+           style="color: #fff;background: linear-gradient(to left, #FE3A13 0, #FE8703 100%);border:none;height: 45px;"
+           id="sure">
+            立即兑换
+        </a>
+    </nav>
+    <!--
+        作者：854214434@qq.com
+        时间：2018-04-17
+        描述：弹出窗口
+    -->
+    <div id="modal" class="mui-modal">
+        <header class="mui-bar mui-bar-nav" style="top: auto;">
+            <a id="close" class="mui-icon mui-icon-close mui-pull-right" href="#modal"></a>
+            <h1 class="mui-title">提交订单</h1>
+
+        </header>
+        <div class="mui-content" style="height: 100%;">
+            <form class="mui-input-group">
+                <div class="mui-input-row">
+                    <label>卡券号</label>
+                    <input id="cardNum" type="text" class="mui-input-clear" placeholder="请输入卡券号">
+                </div>
+                <div class="mui-input-row">
+                    <label>卡券密码</label>
+                    <input id="cardPassWord" type="password" class="mui-input-clear" placeholder="请输入卡券密码">
+                </div>
+                <div class="mui-input-row">
+                    <label>收货人</label>
+                    <input id="consigneeName" type="text" class="mui-input-clear" placeholder="请输入收货人">
+                </div>
+                <div class="mui-input-row">
+                    <label>联系方式</label>
+                    <input id="consigneePhone" type="text" pattern="[0-9]*" maxlength="11" class="mui-input-clear"
+                           placeholder="请输入手机号">
+                </div>
+                <div class="mui-input-row" id="city_div">
+                    <label>所在地区</label>
+                    <span id="city" class="mui-navigate-right">请选择所在地区</span>
+                </div>
+                <div class="mui-input-row">
+                    <label>详细地址</label>
+                    <input type="text" class="mui-input-clear" id="consigneeAddress" placeholder="请输入详细地址">
+                </div>
+            </form>
+            <a href="javascript:;"
+               style="font-weight: bold;padding-top: 7px;text-decoration:underline;display: inline-block;font-size: 13px;float: right;margin-right: 15px;"
+               id="xuzhi">兑换须知</a>
+            <nav class="mui-bar mui-bar-tab" style="position: fixed;bottom:0px;height: 45px;">
+                <a id="submit" class="mui-tab-item mui-btn-danger"
+                   style="color: #fff;background: linear-gradient(to left, #FE3A13 0, #FE8703 100%);border:none;height: 45px;"
+                   href="#">
+                    提交订单
+                </a>
+            </nav>
+        </div>
+    </div>
+</div>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.js"></script>
+<script src="js/mui.poppicker.js"></script>
+<script src="js/city.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript">
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+    //阻尼系数
+    var deceleration = mui.os.ios ? 0.0007 : 0.0007;
+    mui('.mui-scroll-wrapper').scroll({
+        bounce: false,
+        indicators: false, //是否显示滚动条
+        deceleration: deceleration
+    });
+    var goodsId = getQueryString("id");
+    document.getElementById("order").addEventListener("tap", function () {
+        var btnArray = ['取消', '确定'];
+        mui.prompt('', '请输入查询的手机号/订单号/卡券号', '订单查询', btnArray, function (e) {
+            if (e.index == 1) {
+                if (e.value == null || e.value == "") {
+                    mui.toast("请输入手机号/订单号/卡券号");
+                    return false;
+                }
+                mui.openWindow({
+                    url: 'logistics_index.html?phone='+e.value,
+                    id: 'logistics_index',
+                    styles: {
+                        top: "0px", //新页面顶部位置
+                        bottom: "0px", //新页面底部位置
+                        popGesture: "close"
+                    },
+                    extras: {
+                        brandId: ""
+                    },
+                    show: {
+                        autoShow: false //页面loaded事件发生后自动显示，默认为true
+                    },
+                    waiting: {
+                        autoShow: false //自动显示等待框，默认为true
+                    }
+
+                })
+            }
+        })
+    });
+    document.getElementById("xuzhi").addEventListener("tap", function () {
+        mui.openWindow({
+            url: 'indexs.html',
+            id: 'indexs',
+            styles: {
+                top: "0px", //新页面顶部位置
+                bottom: "0px", //新页面底部位置
+                popGesture: "close"
+            },
+            extras: {
+                brandId: ""
+            },
+            show: {
+                autoShow: false //页面loaded事件发生后自动显示，默认为true
+            },
+            waiting: {
+                autoShow: false //自动显示等待框，默认为true
+            }
+
+        })
+    });
+    document.getElementById("submit").addEventListener("tap", function () {
+        var name = $(this).html().trim();
+        if (name == "提交订单") {
+            var cardNum = $("#cardNum").val();
+            var passWord = $("#cardPassWord").val();
+            var consigneeName = $("#consigneeName").val();
+            var consigneePhone = $("#consigneePhone").val();
+            var city=$("#city").html();
+            var address=$("#consigneeAddress").html();
+            var consigneeAddress = city + " " +address;
+            if(cardNum==null||cardNum==""){
+                mui.toast("请填写卡券号！")
+                return;
+            }
+            if(passWord==null||passWord==""){
+                mui.toast("请填写卡券密码！")
+                return;
+            }
+            if(consigneeName==null||consigneeName==""){
+                mui.toast("请填写收货人！")
+                return;
+            }
+            if(consigneePhone==null||consigneePhone==""){
+                mui.toast("请填写手机号！")
+                return;
+            }
+            if(city==null||city==""){
+                mui.toast("请选择所在地区！")
+                return;
+            }
+            if(consigneeAddress==null||consigneeAddress==""){
+                mui.toast("请填写详细地址！")
+                return;
+            }
+            $(this).html("提交中");
+            mui.ajax('/h5/order/add', {
+                type: 'post',
+                data: {
+                    goodsId: goodsId,
+                    cardNum: cardNum,
+                    passWord: passWord,
+                    consigneeName: consigneeName,
+                    consigneePhone: consigneePhone,
+                    consigneeAddress: consigneeAddress
+                },
+                success: function (result) {
+                    if (result.code == 1) {
+                        mui.toast("提交成功");
+                        setTimeout(function () {
+                            mui.openWindow({
+                                url: 'logistics_index.html?phone='+consigneePhone,
+                                id: 'logistics_index',
+                                styles: {
+                                    top: "0px", //新页面顶部位置
+                                    bottom: "0px", //新页面底部位置
+                                    popGesture: "close"
+                                },
+                                extras: {
+                                    brandId: ""
+                                },
+                                show: {
+                                    autoShow: false //页面loaded事件发生后自动显示，默认为true
+                                },
+                                waiting: {
+                                    autoShow: false //自动显示等待框，默认为true
+                                }
+                            })
+                            setTimeout(function () {
+                                $("#modal").hide();
+                            }, 2000);
+                        }, 1000);
+                    } else {
+                        mui.toast(result.msg);
+                        setTimeout(function () {
+                            $("#submit").html("提交订单");
+                        }, 1000)
+                    }
+                },
+                error: function (xhr, type, errorThrown) {
+                    $(".loading_div").fadeOut("slow");
+                    if ("timeout" == type) {
+                        mui.toast("请求超时！");
+                    } else {
+                        mui.toast("请求异常！");
+                    }
+                    setTimeout(function () {
+                        $("#submit").html("提交订单");
+                    }, 1000)
+                }
+            });
+        }
+    });
+    window.onload = function () {
+        mui.ajax('/h5/goods/selectOne', {
+            type: 'get',
+            data: {
+                id: goodsId
+            },
+            success: function (result) {
+                if (result.code == 1 && result.data != null) {
+                    var goods = result.data;
+                    var imgList = goods.images.split(",");
+                    var imgHtmlStr = '';
+                    var dianHtmlStr = '';
+                    for (var i = 0; i < imgList.length; i++) {
+                        imgHtmlStr += '<div class="mui-slider-item">' +
+                            '<a href="#"><img src="' + imgList[i] + '"></a></div>';
+                        if (i == 0) {
+                            dianHtmlStr = '<div class="mui-indicator mui-active"></div>';
+                        } else {
+                            dianHtmlStr += '<div class="mui-indicator"></div>';
+                        }
+                    }
+                    document.getElementById("img_div").innerHTML = imgHtmlStr;
+                    document.getElementById("dian_div").innerHTML = dianHtmlStr;
+                    document.getElementById("price").innerHTML = goods.price;
+                    document.getElementById("name").innerHTML = goods.name;
+                    document.getElementById("exchange").innerHTML = goods.exchange;
+                    document.getElementById("category").innerHTML = goods.category;
+                    document.getElementById("address").innerHTML = goods.address;
+                    document.getElementById("brand").innerHTML = goods.brand;
+                    if (imgList.length <= 1) {
+                        document.getElementById("dian_div").style.display = "none";
+                    } else {
+                        var slider = mui("#slider");
+                        slider.slider({
+                            interval: 5000
+                        });
+                    }
+                }
+                $(".loading_div").fadeOut("slow");
+            },
+            error: function (xhr, type, errorThrown) {
+                $(".loading_div").fadeOut("slow");
+                if ("timeout" == type) {
+                    mui.toast("请求超时！");
+                } else {
+                    mui.toast("请求异常！");
+                }
+            }
+        });
+
+
+        $("input").focus(function () {
+            this.focus();
+        });
+        $(".loading_div").fadeOut("slow");
+        var cityPicker3 = new mui.PopPicker({
+            layer: 3
+        });
+        cityPicker3.setData(cityData3);
+        var _getParam = function (obj, param) {
+            return obj[param] || '';
+        };
+        var showCityPickerButton = document.getElementById('city_div');
+        var cityResult3 = document.getElementById('city');
+        showCityPickerButton.addEventListener('tap', function (event) {
+            $("input").blur();
+            cityPicker3.show(function (items) {
+                $("#city").html(_getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text'));
+                $("#city").css("color", "#000000");
+            });
+        }, false);
+    }
+</script>
+
+</body>
+
+</html>

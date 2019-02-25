@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TcreditShopCategoryMapper">
+
+    <resultMap type="com.credit.diversion.model.TcreditShopCategory" id="mTcreditShopCategory" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TcreditShopCategory" id="mTcreditShopCategoryAll">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="name" property="name"/>
+        <result column="status" property="status"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="parent" property="parent"/>
+        <result column="created" property="created"/>
+        <result column="updated" property="updated"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        parent_id AS parentId,
+        name AS name,
+        status AS status,
+        sort_order AS sortOrder,
+        parent AS parent,
+        created AS created,
+        updated AS updated
+    </sql>
+</mapper>

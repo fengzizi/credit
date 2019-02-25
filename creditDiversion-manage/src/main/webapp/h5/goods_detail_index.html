@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+            var id = getQueryString("id");//id为0时代表新增
+			mui.init({
+				subpages: [{
+					url: 'goodsDetail.html?id='+id,
+					id: 'goodsDetail',
+					styles: {
+						top: '0px', //mui标题栏默认高度为45px；
+						bottom: '0px' //默认为0px，可不定义；
+					}
+				}]
+			});
+		</script>
+	</body>
+
+</html>

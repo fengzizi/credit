@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TmanageRoleInfoMapper">
+
+    <resultMap type="com.credit.diversion.model.TmanageRoleInfo" id="mTmanageRoleInfo" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TmanageRoleInfo" id="mTmanageRoleInfoAll">
+        <id column="id" property="id"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_remark" property="roleRemark"/>
+        <result column="role_status" property="roleStatus"/>
+        <result column="role_type" property="roleType"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        role_name AS roleName,
+        role_remark AS roleRemark,
+        role_status AS roleStatus,
+        role_type AS roleType
+    </sql>
+</mapper>

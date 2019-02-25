@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TversionControlMapper">
+
+    <resultMap type="com.credit.diversion.model.TversionControl" id="mTversionControl" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TversionControl" id="mTversionControlAll">
+        <id column="id" property="id"/>
+        <result column="os_type" property="osType"/>
+        <result column="os_version" property="osVersion"/>
+        <result column="os_build_num" property="osBuildNum"/>
+        <result column="audit_switch" property="auditSwitch"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="updated_by" property="updatedBy"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        os_type AS osType,
+        os_version AS osVersion,
+        os_build_num AS osBuildNum,
+        audit_switch AS auditSwitch,
+        created_at AS createdAt,
+        created_by AS createdBy,
+        updated_at AS updatedAt,
+        updated_by AS updatedBy
+    </sql>
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TuserFeedbackMapper">
+
+    <resultMap type="com.credit.diversion.model.TuserFeedback" id="mTuserFeedback" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TuserFeedback" id="mTuserFeedbackAll">
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="feedback_content" property="feedbackContent"/>
+        <result column="feedback_type" property="feedbackType"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="handled_suggestion" property="handledSuggestion"/>
+        <result column="app_version" property="appVersion"/>
+        <result column="sys_version" property="sysVersion"/>
+        <result column="phone_brand" property="phoneBrand"/>
+        <association property="tuserPersonInfo" column="uid" javaType="com.credit.diversion.model.TuserPersonInfo" resultMap="com.credit.diversion.dao.TuserPersonInfoMapper.mTuserPersonInfop"/>
+        <association property="tuserAuthInfo" column="uid" javaType="com.credit.diversion.model.TuserAuthInfo" resultMap="com.credit.diversion.dao.TuserAuthInfoMapper.mTuserAuthInfoa"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        uid AS uid,
+        feedback_content AS feedbackContent,
+        feedback_type AS feedbackType,
+        created_by AS createdBy,
+        created_at AS createdAt,
+        updated_by AS updatedBy,
+        updated_at AS updatedAt,
+        handled_suggestion AS handledSuggestion,
+        app_version AS appVersion,
+        sys_version AS sysVersion,
+        phone_brand AS phoneBrand
+    </sql>
+    <sql id="mColumnsSqlOff">
+        f.id AS id,
+        f.uid AS uid,
+        f.feedback_content AS feedback_content,
+        f.feedback_type AS feedback_type,
+        f.created_by AS created_by,
+        f.created_at AS created_at,
+        f.updated_by AS updated_by,
+        f.updated_at AS updated_at,
+        f.handled_suggestion AS handled_suggestion,
+        f.app_version AS app_version,
+        f.sys_version AS sys_version,
+        f.phone_brand AS phone_brand
+    </sql>
+
+    <select id="selectListOfUser" resultMap="mTuserFeedbackAll">
+        select <include refid="mColumnsSqlOff"/> ,
+        <include refid="com.credit.diversion.dao.TuserPersonInfoMapper.mColumnsSqlOFp"/>
+        from t_user_feedback f
+        join t_user_person_info p on f.uid=p.uid
+        <where>
+            <if test="f.uid!=null and f.uid!=''">
+                and f.uid=#{f.uid}
+            </if>
+            <if test="f.feedbackType!=null and f.feedbackType!=''">
+                and f.feedback_type=#{f.feedbackType}
+            </if>
+            <if test="p.userPhone!=null and p.userPhone!=''">
+                and p.user_phone like CONCAT('%',#{p.userPhone},'%')
+            </if>
+        </where>
+        order by f.id desc
+    </select>
+
+    <select id="selectListOfAuth" resultMap="mTuserFeedbackAll">
+        select <include refid="mColumnsSqlOff"/> ,
+        <include refid="com.credit.diversion.dao.TuserAuthInfoMapper.mColumnsSqlOFa"/>
+        from t_user_feedback f
+        join t_user_auth_info a on f.uid=a.uid
+        <where>
+            <if test="f.uid!=null and f.uid!=''">
+                and f.uid=#{f.uid}
+            </if>
+            <if test="f.feedbackType!=null and f.feedbackType!=''">
+                and f.feedback_type=#{f.feedbackType}
+            </if>
+            <if test="a.userPhone!=null and a.userPhone!=''">
+                and a.user_phone like CONCAT('%',#{a.userPhone},'%')
+            </if>
+        </where>
+        order by f.id desc
+    </select>
+</mapper>

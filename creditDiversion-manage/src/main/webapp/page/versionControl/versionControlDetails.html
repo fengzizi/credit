@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>管理员详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css?v=2.1.0" media="all"/>
+    <style type="text/css">
+        body{
+            padding: 15px;
+        }
+        .layui-form-pane .layui-form-label{
+            width: 186px;
+        }
+        .layui-form-pane .layui-input-block{
+            margin-left: 186px;
+        }
+        textarea{
+            max-height: 500px;
+        }
+
+        .layui-form-item .layui-input-inline{
+            width: 260px;
+        }
+        input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+        input[type=text]:focus, input[type=password]:focus, textarea:focus {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+
+        .layui-form-label{
+            width: 100px;
+        }
+
+        .layui-input-block{
+            margin-left: 130px;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<form class="layui-form" lay-filter="formTest" enctype="multipart/form-data" action="">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">操作系统</label>
+            <div class="layui-input-inline">
+                <select name="osType" id="osType">
+                    <option value="IOS">IOS</option>
+                    <option value="ANDROID">ANDROID</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">APP审核开关</label>
+            <div class="layui-input-inline">
+                <select name="auditSwitch" id="auditSwitch">
+                    <option value="ON">开启审核</option>
+                    <option value="OFF">关闭审核</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">系统版本号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="osVersion" id="osVersion" lay-verify="required" placeholder="请输入系统版本号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">Build号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="osBuildNum" id="osBuildNum" placeholder="请输入Build号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item update" style="display:none;">
+        <div class="layui-inline">
+            <label class="layui-form-label">创建人</label>
+            <div class="layui-input-inline">
+                <input type="text" name="createdBy" id="createdBy" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">创建时间</label>
+            <div class="layui-input-block" style="width: 260px;">
+                <input type="text" name="createdAt" id="createdAt" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item update" style="display: none">
+        <div class="layui-inline">
+            <label class="layui-form-label">更新人</label>
+            <div class="layui-input-inline">
+                <input type="text" name="updatedBy" id="updatedBy" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">更新时间</label>
+            <div class="layui-input-block" style="width: 260px;">
+                <input type="text" name="updatedAt" id="updatedAt" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item" id="submit_div" style="display:none;">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" id="testListAction2" lay-filter="submit">立即提交</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../layui/layui.js?v=2.1.0"></script>
+<script type="text/javascript" src="versionControlDetails.js"></script>
+</body>
+</html>

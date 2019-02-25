@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TmanageResourceMapper">
+
+    <resultMap type="com.credit.diversion.model.TmanageResource" id="mTmanageResource" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TmanageResource" id="mTmanageResourceAll">
+        <id column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="resource_name" property="resourceName"/>
+        <result column="resource_url" property="resourceUrl"/>
+        <result column="resource_type" property="resourceType"/>
+        <result column="resource_icon" property="resourceIcon"/>
+        <result column="resource_order" property="resourceOrder"/>
+        <result column="resource_status" property="resourceStatus"/>
+        <result column="resource_group" property="resourceGroup"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        pid AS pid,
+        resource_name AS resourceName,
+        resource_url AS resourceUrl,
+        resource_type AS resourceType,
+        resource_icon AS resourceIcon,
+        resource_order AS resourceOrder,
+        resource_status AS resourceStatus,
+        resource_group AS resourceGroup
+    </sql>
+</mapper>

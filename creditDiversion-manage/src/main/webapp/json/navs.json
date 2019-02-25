@@ -1,0 +1,152 @@
+[
+  {
+    "title": "用户管理",
+    "icon": "&#xe630;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "用户登录信息",
+        "icon": "&#xe63c;",
+        "href": "page/userLoginInfo/userLoginInfo.html",
+        "spread": false
+      },
+      {
+        "title": "用户认证信息",
+        "icon": "&#xe63c;",
+        "href": "page/userAuthInfo/userAuthInfo.html",
+        "spread": false
+      },
+      {
+        "title": "用户个人信息",
+        "icon": "&#xe63c;",
+        "href": "page/userPersonInfo/userPersonInfo.html",
+        "spread": false
+      },
+      {
+        "title": "用户反馈",
+        "icon": "&#xe63c;",
+        "href": "page/userFeedback/userFeedback.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "信贷管理",
+    "icon": "&#xe630;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "信贷产品",
+        "icon": "&#xe63c;",
+        "href": "page/creditShopItem/creditShopItem.html",
+        "spread": false
+      },
+      {
+        "title": "类目管理",
+        "icon": "&#xe63c;",
+        "href": "page/creditShopCategory/creditShopCategory.html",
+        "spread": false
+      },
+      {
+        "title": "信贷附属",
+        "icon": "&#xe63c;",
+        "href": "page/itemAttach/itemAttach.html",
+        "spread": false
+      },
+      {
+        "title": "评论统计",
+        "icon": "&#xe63c;",
+        "href": "page/itemComment/itemComment.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "文章管理",
+    "icon": "&#xe630;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "文章管理",
+        "icon": "&#xe63c;",
+        "href": "page/article/article.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "banner管理",
+    "icon": "&#xe630;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "banner管理",
+        "icon": "&#xe63c;",
+        "href": "page/banner/banner.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "广播消息",
+    "icon": "&#xe630;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "广播管理",
+        "icon": "&#xe63c;",
+        "href": "page/broadCast/broadCast.html",
+        "spread": false
+      },
+      {
+        "title": "消息管理",
+        "icon": "&#xe63c;",
+        "href": "page/message/message.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "系统管理",
+    "icon": "&#xe630;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "管理员列表",
+        "icon": "&#xe63c;",
+        "href": "page/admin/riskAdmin.html",
+        "spread": false
+      },
+      {
+        "title": "公司列表",
+        "icon": "&#xe63c;",
+        "href": "page/manageCompany/manageCompany.html",
+        "spread": false
+      },
+      {
+        "title": "角色管理",
+        "icon": "&#xe63c;",
+        "href": "page/manageRoleInfo/manageRoleInfo.html",
+        "spread": false
+      },
+      {
+        "title": "app版本",
+        "icon": "&#xe63c;",
+        "href": "page/versionControl/versionControl.html",
+        "spread": false
+      },
+      {
+        "title": "菜单管理",
+        "icon": "&#xe63c;",
+        "href": "page/manageResource/manageResource.html",
+        "spread": false
+      }
+    ]
+  }
+]

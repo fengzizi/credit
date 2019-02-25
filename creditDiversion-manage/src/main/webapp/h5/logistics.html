@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/mui.css" />
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<style>
+			* {
+				font-weight: bold;
+			}
+			
+			.mui-table-view-cell {
+				padding: 11px 13px;
+			}
+			
+			.mui-table-view .mui-media-object {
+				height: 70px;
+				max-width: 70px;
+				line-height: 70px;
+			}
+			
+			.mui-table-view:before {
+				background: transparent;
+			}
+			
+			.detail:after {
+				right: 13px;
+				left: 50px;
+			}
+			
+			.detail {
+				padding-left: 50px;
+			}
+			
+			#ul_div {
+				background: white;
+				margin-bottom: 0px;
+				bottom: 0px;
+			}
+			
+			.first {
+				padding-top: 0px;
+			}
+			
+			.first * {
+				color: #27AF60;
+			}
+			
+			.first_jiaobiao {
+				width: 14px;
+				height: 14px;
+				background: #27AF60;
+				border-radius: 50%;
+				position: absolute;
+				top: 4px;
+				left: 18.5px;
+				z-index: 1;
+				/*-webkit-box-shadow: 0 0 6px green;
+				-moz-box-shadow: 0 0 6px green;
+				box-shadow: 0 0 6px green;*/
+				border: 2px solid #B8E5CB;
+			}
+			
+			.jiaobiao {
+				width: 9px;
+				height: 9px;
+				background: #DDDDDD;
+				border-radius: 50%;
+				position: absolute;
+				top: 17px;
+				left: 21px;
+				z-index: 1;
+			}
+			
+			.left_li {
+				width: 1px;
+				height: 100%;
+				background: #DDDDDD;
+				position: absolute;
+				left: 25px;
+				top: 0px;
+				margin-top: 32px;
+			}
+			
+			.phone {
+				color: #71B5F0;
+				font-size: 14px;
+				text-decoration: underline;
+			}
+			
+			.end_li:after {
+				background: transparent;
+			}
+			.mui-bar-nav ~ .mui-content .mui-pull-top-pocket{
+				top: 0px;
+			}
+		</style>
+		<script>
+			var phone = getQueryString("phone");
+            window.onload=function(){
+                loadding(phone);
+			}
+			mui.init({
+				swipeBack: true,
+				pullRefresh: {
+					container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					down: {
+						height: 50, //可选,默认50.触发下拉刷新拖动距离,
+						auto: false, //可选,默认false.自动下拉刷新一次
+						contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+						contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+						contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+						callback: function() {
+							loadding(phone);
+						} //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+			//创建补0函数
+			function p(s) {
+				return s < 10 ? '0' + s : s;
+			}
+
+			function loadding(phone) {
+				mui.ajax('/h5/order/selectByPhone', {
+					data: {
+                        phone: phone
+					},
+					dataType: 'json',
+					type: 'post',
+					success: function(jsonobj) {
+						var succ = jsonobj.succ;
+						if(succ) {
+							var express = jsonobj.express;
+							var result = jsonobj.result;
+							var list = jsonobj.resultItems;
+							var order=jsonobj.order;
+                            if(order!=null){
+                                $("#goods_imgs").attr("src",order.goodsImg.split(",")[0]);
+                                $("#stateOrder").html(order.stateStr);
+                                if(order.state==0){
+                                    $("#state").html("未发货");
+                                    return;
+                                }else{
+                                    if(order.shippingExpressCode=="0"){
+                                        $("#state").html("无需物流");
+									}
+                                }
+                            }
+							if(express != null) {
+								var state = parseInt(result.state);
+								$("#name").html(express.seName);
+								if(result.status == 0) { //物流单号错误或无信息
+									$("#state").html(result.message);
+									$(".ul_2").hide();
+									$("#ul_div").slideDown("slow");
+								} else {
+                                    $(".ul_2").show();
+									var stateStr = "";
+									switch(state) {
+										case 0:
+											stateStr = "运输中";
+											break;
+										case 1:
+											stateStr = "揽件中";
+											break;
+										case 2:
+											stateStr = "状态异常";
+											break;
+										case 3:
+											stateStr = "已签收";
+											break;
+										case 4:
+											stateStr = "已退签";
+											break;
+										case 5:
+											stateStr = "派件中";
+											break;
+										case 6:
+											stateStr = "退回中";
+											break;
+										default:
+											stateStr = "获取失败";
+									}
+									$("#state").html(stateStr);
+								}
+								$("#eCode").html(order.waybillNum);
+								if(list != null) {
+									var str = "";
+									for(var i = 0; i < list.length; i++) {
+										var context = list[i].context;
+										if(list[i].context.length >= 6) {
+											//context = list[i].context.replace(list[i].context.substring(0, 6), "");
+											context = context.replace(/(\d{3})\d{4}(\d{4})/, '<a href="tel:$&" class="phone">$&</a>');
+										} else {
+											context = list[i].context;
+										}
+										str += '<li class="mui-table-view-cell detail ' + class_li(i, list.length) + '" style="background: white;">' +
+											'<p style="font-size: 13.5px;margin-bottom: 5px;">' + context.trim() + '</p>' +
+											'<p class="mui-ellipsis" style="font-size: 13.5px;">' + list[i].time + '</p>' +
+											'<div class="' + class_jiaobiao(i) + '"></div></li>';
+									}
+									str += '<li class="left_li"></li>';
+									$(".ul_2").html(str);
+									$("#ul_div").slideDown("slow");
+								}
+							}
+						} else { //暂无物流信息
+                            $(".ul_2").hide();
+                            var order=jsonobj.order;
+                            if(order!=null){
+                                $("#goods_imgs").attr("src",order.goodsImg.split(",")[0]);
+                                $("#stateOrder").html(order.stateStr);
+                                if(order.state==0){
+                                    $("#state").html("未发货");
+								}else{
+                                    if(order.shippingExpressCode=="0"){
+                                        $("#state").html("无需物流");
+                                    }else{
+                                        mui.toast("暂无物流信息");
+                                        $("#state").html("无物流信息");
+									}
+								}
+                            }else{
+                                mui.toast("未查找到相关订单");
+                                $("#state").html("未查找到相关订单");
+							}
+						}
+						mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+					},
+					error: function(xhr, type, errorThrown) {
+						mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+						if("timeout" == type) {
+							mui.toast("请求超时！");
+						} else {
+							mui.toast("请求异常！");
+						}
+					}
+				});
+			}
+
+			function class_li(i, k) {
+				var s = '';
+				if(i == 0) {
+					s = 'first';
+
+				}
+				if(i == k - 1) {
+					s += ' end_li';
+				}
+				return s;
+			}
+
+			function class_jiaobiao(i) {
+				var j = '';
+				if(i == 0) {
+					j = 'first_jiaobiao';
+				} else {
+					j = 'jiaobiao';
+				}
+				return j;
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+				<div id="ul_div">
+					<ul class="mui-table-view" style="margin-top: 0px;">
+						<li class="mui-table-view-cell" style="background: white;">
+							<img id="goods_imgs" class="mui-media-object mui-pull-left" src="images/60x60.gif" style="border: 1px solid #F0F0F0;">
+							<div class="mui-media-body" style="line-height: 18px;">
+								<span style="font-size: 14px;color: #3C454E;font-weight: bolder;">物流状态</span><span style="font-size: 14px;color: #36B46B;margin-left: 5px;" id="state"></span>
+								<p class='mui-ellipsis' style="font-size: 14px;">承运来源：<span id="name"></span></p>
+								<p class='mui-ellipsis' style="font-size: 14px;">运单编号：<span id="eCode"></span></p>
+								<p class='mui-ellipsis' style="font-size: 14px;">官方电话：<span style="color: #71B5F8;">暂无</span></p>
+							</div>
+						</li>
+					</ul>
+					<div style="width: 100%;height: 13px;background:#EFEFF4;"></div>
+					<ul class="mui-table-view ul_2" style="padding-top: 15px;overflow: hidden;display: none;">
+						<li class="mui-table-view-cell detail first">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="first_jiaobiao"></div>
+						</li>
+						<li class="mui-table-view-cell detail">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="jiaobiao"></div>
+						</li>
+						<li class="mui-table-view-cell detail">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="jiaobiao"></div>
+						</li>
+						<li class="mui-table-view-cell detail">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="jiaobiao"></div>
+						</li>
+						<li class="mui-table-view-cell detail">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="jiaobiao"></div>
+						</li>
+						<li class="mui-table-view-cell detail">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="jiaobiao"></div>
+						</li>
+						<li class="mui-table-view-cell detail">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="jiaobiao"></div>
+						</li>
+						<li class="mui-table-view-cell detail">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="jiaobiao"></div>
+						</li>
+						<li class="mui-table-view-cell detail">
+							<p class='mui-ellipsis' style="font-size: 13px;margin-bottom: 5px;">[杭州市]滨江区公司已发出</p>
+							<p class='mui-ellipsis' style="font-size: 13px;">2016-12-12&nbsp;08:08:58</p>
+							<div class="jiaobiao"></div>
+						</li>
+						<li class="left_li"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

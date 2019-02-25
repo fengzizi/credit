@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TuserAuthInfoMapper">
+
+    <resultMap type="com.credit.diversion.model.TuserAuthInfo" id="mTuserAuthInfo" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TuserAuthInfo" id="mTuserAuthInfoAll">
+        <id column="uid" property="uid"/>
+        <result column="real_name" property="realName"/>
+        <result column="id_card" property="idCard"/>
+        <result column="user_phone" property="userPhone"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <!-- 主要用作关联查询 -->
+    <resultMap type="com.credit.diversion.model.TuserAuthInfo" id="mTuserAuthInfoa">
+        <id column="uid" property="uid"/>
+        <result column="real_name" property="realName"/>
+        <result column="id_card" property="idCard"/>
+        <result column="user_phone" property="userPhone"/>
+        <result column="auth_created_by" property="createdBy"/>
+        <result column="auth_created_at" property="createdAt"/>
+        <result column="auth_updated_by" property="updatedBy"/>
+        <result column="auth_updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        uid AS uid,
+        real_name AS realName,
+        id_card AS idCard,
+        user_phone AS userPhone,
+        created_by AS createdBy,
+        created_at AS createdAt,
+        updated_by AS updatedBy,
+        updated_at AS updatedAt
+    </sql>
+
+    <!-- 主要用作关联查询 -->
+    <sql id="mColumnsSqlOFa">
+        a.uid AS uid,
+        a.real_name AS real_name,
+        a.id_card AS id_card,
+        a.user_phone AS user_phone,
+        a.created_by AS auth_created_by,
+        a.created_at AS auth_created_at,
+        a.updated_by AS auth_updated_by,
+        a.updated_at AS auth_updated_at
+    </sql>
+</mapper>

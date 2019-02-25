@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TcreditAccessRecordMapper">
+
+    <resultMap type="com.credit.diversion.model.TcreditAccessRecord" id="mTcreditAccessRecord" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TcreditAccessRecord" id="mTcreditAccessRecordAll">
+        <id column="id" property="id"/>
+        <result column="credit_id" property="creditId"/>
+        <result column="credit_name" property="creditName"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="is_register" property="isRegister"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        credit_id AS creditId,
+        credit_name AS creditName,
+        user_id AS userId,
+        user_name AS userName,
+        is_register AS isRegister,
+        create_time AS createTime
+    </sql>
+</mapper>

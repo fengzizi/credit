@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.diversion.dao.TmanageCompanyInfoMapper">
+
+    <resultMap type="com.credit.diversion.model.TmanageCompanyInfo" id="mTmanageCompanyInfo" autoMapping="true">
+    </resultMap>
+    <resultMap type="com.credit.diversion.model.TmanageCompanyInfo" id="mTmanageCompanyInfoAll">
+        <id column="id" property="id"/>
+        <result column="company_name" property="companyName"/>
+        <result column="company_address" property="companyAddress"/>
+        <result column="company_type" property="companyType"/>
+        <result column="company_status" property="companyStatus"/>
+        <result column="remark" property="remark"/>
+        <result column="company_phone" property="companyPhone"/>
+    </resultMap>
+
+    <sql id="mColumnsSql">
+        id AS id,
+        company_name AS companyName,
+        company_address AS companyAddress,
+        company_type AS companyType,
+        company_status AS companyStatus,
+        remark AS remark,
+        company_phone AS companyPhone
+    </sql>
+</mapper>

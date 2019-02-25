@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信贷统计</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css?v=2.1.0" media="all"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all"/>
+    <link rel="stylesheet" href="../../css/news.css" media="all"/>
+    <style>
+        .layui-form-pane .layui-form-label{
+            width: auto;
+        }
+        .layui-table, .layui-table-view {
+            margin: 0px;
+        }
+        body .demo-class .layui-layer-title{
+            border-top:1px solid #1AA094;
+        }
+        .layui-form-pane .layui-inline {
+            margin: 5px 5px 5px 0;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<blockquote class="layui-elem-quote news_search">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-inline">
+            <label class="layui-form-label">信贷产品</label>
+            <div class="layui-input-inline">
+                <select name="categoryId" id="categoryId" lay-verify="required" lay-search>
+                    <option value="">全部</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">时间</label>
+            <div class="layui-input-inline">
+                <select name="bizType" id="state_search1" placeholder="请选择">
+                    <option value="7">最近7天</option>
+                    <option value="10">最近10天</option>
+                    <option value="15" selected>最近15天</option>
+                    <option value="20">最近20天</option>
+                    <option value="30">最近30天</option>
+                </select>
+            </div>
+        </div>
+        <a class="layui-inline layui-btn search_btn">查询</a>
+        <button type="reset" class="layui-inline layui-btn layui-btn-primary">重置</button>
+        <!--<button type="button" class="layui-inline layui-btn layui-btn-normal insert">添加</button>-->
+    </form>
+</blockquote>
+<div class="layui-row layui-col-space1" id="tab" style="width: 100%;overflow: auto">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-body" id="div_canvas">
+                <canvas id="creditChart" width="100%"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../layui/layui.js?v=2.1.0"></script>
+<script type="text/javascript" src="../../js/moment.min.js?v=2.1.0"></script>
+<script type="text/javascript" src="../../js/Chart.min.js"></script>
+<script type="text/javascript" src="../../js/utf.js"></script>
+<script type="text/javascript" src="creditStatistics.js?v=1.3.0"></script>
+</html>

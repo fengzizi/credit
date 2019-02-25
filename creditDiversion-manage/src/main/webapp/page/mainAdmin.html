@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首页--贷款超市后台管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../layui/css/layui.css?v=2.1.0" media="all"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all"/>
+    <link rel="stylesheet" href="../css/main.css?v=1.0.0" media="all"/>
+    <link rel="stylesheet" href="../css/news.css" media="all"/>
+    <style>
+        body {
+            margin: 10px 10px 0;
+        }
+
+        .layui-elem-field {
+            padding: 15px;
+        }
+
+        .news_search {
+            background: white;
+            padding: 0px 10px;
+        }
+
+        .layui-col-xs2 {
+            border-right: 1px solid #c2c2c2;
+        }
+
+        .layui-row div {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .layui-row div div {
+            color: #737383;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .layui-row div span {
+            color: #000;
+            margin: 0 3px;
+            font-size: 25px;
+        }
+
+        .layui-row div span:hover {
+            color: #01AAED;
+        }
+    </style>
+
+</head>
+<body class="childrenBody" style="background-color: #F2F2F2;">
+
+<div class="layui-col-md12">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <blockquote class="layui-elem-quote news_search">
+                今日数据
+            </blockquote>
+            <div class="layui-fluid">
+                <div class="layui-row">
+                    <div class="layui-col-xs2">
+                        <div>注册数</div>
+                        <span id="countNowRegister">0</span>
+                    </div>
+                    <div class="layui-col-xs2">
+                        <div>注册占比</div>
+                        <span><span id="countNowRegisterRatio">0.00</span>%</span>
+                    </div>
+                    <div class="layui-col-xs2">
+                        <div>登录数</div>
+                        <span id="countNowLogin">0</span>
+                    </div>
+                    <div class="layui-col-xs2">
+                        <div>登录占比</div>
+                        <span><span id="countNowLoginRatio">0.00</span>%</span>
+                    </div>
+                    <div class="layui-col-xs2">
+                        <div>认证数</div>
+                        <span id="countNowAuth">0</span>
+                    </div>
+                    <div class="layui-col-xs2">
+                        <div>认证占比</div>
+                        <span><span id="countNowAuthRatio">0.00</span>%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layui-row layui-col-space1">
+    <div class="layui-col-md6" style="margin-top: 15px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <blockquote class="layui-elem-quote news_search" style="text-align: left;color: #000">
+                    累计数据
+                </blockquote>
+                <div class="layui-fluid">
+                    <div class="layui-row">
+                        <div class="layui-col-xs6">
+                            <div><i class="layui-icon" style="margin-left: 5px;color: #009688">&#xe66f;</i> 历史注册总数<span
+                                    id="countAll">0</span>人
+                            </div>
+                        </div>
+                        <div class="layui-col-xs6">
+                            <div><i class="layui-icon" style="margin-left: 5px;color: #FFB800">&#xe672;</i> 历史认证总数<span
+                                    id="countAuthAll">0</span>人
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md6" style="margin-top: 15px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <blockquote class="layui-elem-quote news_search" style="text-align: left;color: #000">
+                    今日信贷统计
+                </blockquote>
+                <div class="layui-fluid">
+                    <div class="layui-row">
+                        <div class="layui-col-xs4">
+                            <div><i class="layui-icon" style="margin-left: 5px;color: #009688;font-size: 14px;">&#xe646;</i> UV数<span
+                                    id="creditCountAll">0</span>次
+                            </div>
+                        </div>
+                        <div class="layui-col-xs4">
+                            <div><i class="layui-icon" style="margin-left: 5px;color: #5FB878">&#xe66c;</i> 注册数<span
+                                    id="creditCountReAll">0</span>人
+                            </div>
+                        </div>
+                        <div class="layui-col-xs4">
+                            <div><i class="layui-icon" style="margin-left: 5px;color: #FF5722;font-size: 18px">&#xe674;</i> UV转化<span
+                                    id="creditAllRate">0.00</span>%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layui-row layui-col-space1">
+    <div class="layui-col-md6" style="padding-right: 1px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <canvas id="myChart" width="100%"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <canvas id="myChart1" width="100%"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layui-row layui-col-space1">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <canvas id="creditChart" width="100%"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../layui/layui.js?v=2.1.0"></script>
+<script type="text/javascript" src="../js/moment.min.js?v=2.1.0"></script>
+<script type="text/javascript" src="../js/Chart.min.js"></script>
+<script type="text/javascript" src="../js/mainAdmin.js?v=3.5.0"></script>
+<script type="text/javascript" src="../js/utf.js"></script>
+<script>
+
+</script>
+</body>
+</html>

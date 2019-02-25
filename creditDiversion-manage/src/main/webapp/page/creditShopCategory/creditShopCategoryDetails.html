@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>管理员详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css?v=2.1.0" media="all"/>
+    <style type="text/css">
+        body{
+            padding: 15px;
+        }
+        .layui-form-pane .layui-form-label{
+            width: 186px;
+        }
+        .layui-form-pane .layui-input-block{
+            margin-left: 186px;
+        }
+        textarea{
+            max-height: 500px;
+        }
+
+        .layui-form-item .layui-input-inline{
+            width: 260px;
+        }
+        input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+        input[type=text]:focus, input[type=password]:focus, textarea:focus {
+            -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
+
+        .layui-form-label{
+            width: 115px;
+        }
+
+        .layui-input-block{
+            margin-left: 145px;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<form class="layui-form" id="form" lay-filter="formTest" enctype="multipart/form-data" action="">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">分类名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" id="name" lay-verify="name" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <select name="status" id="status">
+                    <option value="1">正常</option>
+                    <option value="2">删除</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">排列序号</label>
+            <div class="layui-input-inline">
+                <input type="number" name="sortOrder" id="sortOrder" lay-verify="number" placeholder="请输入排列序号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">是否为父类目</label>
+            <div class="layui-input-inline">
+                <select name="parent" id="parent">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">父类目</label>
+            <div class="layui-input-inline">
+                <select name="parentId" id="parentId">
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item" id="submit_div">
+        <div class="layui-input-block">
+            <button class="layui-btn" id="testListAction2" lay-submit="" lay-filter="submit">立即提交</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../layui/layui.js?v=2.1.0"></script>
+<script type="text/javascript" src="creditShopCategoryDetails.js?v=1.0.0"></script>
+</body>
+</html>

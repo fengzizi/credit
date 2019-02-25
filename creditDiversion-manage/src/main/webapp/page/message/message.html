@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>管理员</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css?v=2.1.0" media="all"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all"/>
+    <link rel="stylesheet" href="../../css/news.css" media="all"/>
+    <style>
+        .layui-form-pane .layui-form-label {
+            width: auto;
+        }
+
+        .layui-table, .layui-table-view {
+            margin: 0px;
+        }
+
+        body .demo-class .layui-layer-title {
+            border-top: 1px solid #1AA094;
+        }
+
+        .layui-form-pane .layui-inline {
+            margin: 5px 5px 5px 0;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<blockquote class="layui-elem-quote news_search">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-inline">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                       class="layui-input search_input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-inline">
+                <select name="state" id="states_search" placeholder="请选择类型">
+                    <option value="">全部</option>
+                    <option value="1">通知</option>
+                    <option value="2">公告</option>
+                    <option value="3">活动</option>
+                    <!-- 1：通知；2：公告；3：活动 -->
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <select name="state" id="states_search2" placeholder="请选择状态">
+                    <option value="">全部</option>
+                    <option value="1">已发布</option>
+                    <option value="0">草稿</option>
+                    <!-- 1 已发布 0：草稿 -->
+                </select>
+            </div>
+        </div>
+        <a class="layui-inline layui-btn search_btn">查询</a>
+        <button type="reset" class="layui-inline layui-btn layui-btn-primary">重置</button>
+        <button type="button" class="layui-inline layui-btn layui-btn-normal insert">添加</button>
+    </form>
+</blockquote>
+<table class="layui-table" id="adminTable" lay-filter="adminTable"></table>
+<div id="page"></div>
+<script type="text/javascript" src="../../layui/layui.js?v=2.1.0"></script>
+<script type="text/javascript" src="message.js?v=1.6.0"></script>
+<script type="text/html" id="barDemo">
+    <button class="layui-btn  layui-btn-xs layui-btn-normal" onclick="openRisk('{{ d.id }}','查看')">查看</button>
+    <button class="layui-btn layui-btn-xs" onclick="openRisk('{{ d.id }} ','编辑')">编辑</button>
+    <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</button>
+</script>
+<script type="text/html" id="typeBar">
+    {{# if(d.type==1){ }}
+    <span style="color: #54ADE8">通知</span>
+    {{# }else if(d.type==2){ }}
+    <span style="color: #009688">公告</span>
+    {{# }else{ }}
+    <span style="color: #FF5722">活动</span>
+    {{# } }}
+</script>
+<script type="text/html" id="statusBar">
+    {{# if(d.status==1){ }}
+    <span style="color: #54ADE8">已发布</span>
+    {{# }else{ }}
+    <span style="color: #FF5722">草稿</span>
+    {{# } }}
+</script>
+<script type="text/html" id="userIdBar">
+    {{ d.userId==0?'所有人':d.userLoginName}}
+</script>
+<script type="text/html" id="bizStatusBar">
+    <input type="checkbox" name="bizStatus" value="{{d.id}}" lay-skin="switch" lay-text="开启|关闭" {{ d.bizStatus == 0?'checked':'' }} lay-filter="sexDemo" >
+</script>
+</body>
+</html>
